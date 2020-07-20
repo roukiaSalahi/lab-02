@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital@1&display=swap');
+body{
+    font-family: 'Open Sans', sans-serif;
+    background-color: aquamarine;
+}
+#container{
+    display: flex;
+    float: right;
+    width: fit-content;
+}
+.photo{
+    float: left;
+}
