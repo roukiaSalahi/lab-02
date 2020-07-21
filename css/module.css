@@ -1,0 +1,40 @@
+
+h1{
+    padding: 20px;
+}
+h2{
+    margin-top: 10px;
+}
+
+select , button{
+    font-size: x-large;
+    width: 40%;
+    color: #19323c;
+    background-color: #869596;
+    margin: 10px;
+    padding: 5px;
+}
+select:hover , button:hover{
+    color: #869596;
+    background-color: #19323c;
+}
+
+main section{
+    float: left;
+    width: 400px;
+    height: 350px;
+    border: solid #a93f55;
+    border-radius: 10px; 
+     border-radius: 42px;
+    
+    border-collapse: collapse;
+    background-color: #a93f55;
+    margin-bottom: 20px;
+    
+}
+img{
+    padding: 25px;
+    width: 300px;
+    height: 200px;
+ 
+}
