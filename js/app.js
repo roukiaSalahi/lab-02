@@ -2,33 +2,28 @@
 
 $.get('data/page-1.json').then(data => {
     data.forEach(element => {
-        // console.log(element);
-        //create object
+        
         let photo = new Image(element.image_url, element.title, element.description, element.keyword, element.horns);
 
         photo.render();
-        photo.renderOption();
-        // photo.show();
-    });
-})
-function show (){
-    $('select').on("click" , "option" ,function(){
-        $('#container').hide();
         
-    })
-}
+       
+    });
+    createOptions(optionsArr);
 
-show();
+})
 
-
-
-// constructor 
+// constructor
+var imageArr = [];
+var optionsArr = []; 
 function Image(image_url, title, description, keyword, horns) {
     this.image_url = image_url;
     this.title = title;
     this.description = description;
     this.keyword = keyword;
     this.horns = horns;
+    imageArr.push(this);
+    optionsArr.push(keyword);
     
 }
 // prototype function for rendering
@@ -36,41 +31,28 @@ function Image(image_url, title, description, keyword, horns) {
 Image.prototype.render = function () {
     let itemClone = $('#photo-template').clone();
     itemClone.removeAttr('id');
-    const img = $("#photo-template img");
-    img.attr("src", this.image_url);
-    const h2 = $("#photo-template h2");
-    h2.text(this.title);
-    const p = $("#photo-template p");
-    p.text(this.description);
-    $('#container').append(itemClone);
+    itemClone.attr('class', this.keyword);
+    itemClone.find('h2').text(this.keyword);
+    itemClone.find('img').attr('src', this.image_url);
+    itemClone.find('p').text(this.title);
+    itemClone.appendTo('main');
+}
+var forbiddenArry = [];
+function createOptions(arr){
+  arr.forEach(element => {
+      if (!(forbiddenArry.includes(element)))
+      $('select').append(`<option value ="${element}">${element}</option>`);
+      forbiddenArry.push(element)
+  });
 }
 
-var arr = [];
-Image.prototype.renderOption = function () {
-    var option = $('#option').clone();
-    option.removeAttr('id');
-    // const option = $("#select option");
-    option.text(this.keyword);
-    option.attr("value",this.keyword )
-    option.attr("class" , "options")
-    arr.push(this.keyword);
-    for (var i = 0; i < arr.length; i++) {
-        if (!(this.keyword == arr[i])) {
-            $('#select').append(option);
-        }
-    }
-
+function show (){
+    $('select').change(function () {
+        let selectedElement = $(this).val();
+        $('section').hide();
+        $(`.${selectedElement}`).show();
+      });
 }
+show();
 
-// Image.prototype.show = function (){
-//     $('#select').on('click',option{
-//         let values = $(this).val()
-//         $('#container').hide();
-//         $(`.${values}`).fadeIn();
-//         // if (!(option.value == this.keyword)){
-//         //     photo.render();
-//         // }
-//         // photo.render();
-//     })
-// }
 
