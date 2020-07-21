@@ -1,41 +1,60 @@
-
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>The Gallery of Horns</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="css/reset.css">
+
+<head>
+  <title>The Gallery of Horns</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/module.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.1/mustache.js"></script>
+  <script id="template" type="x-tmpl-mustache">
+    <section class = {{keyword}}>
+        <h2>{{title}}</h2>
+        <img src = "{{image_url}}"></img>
+          <p>{{description}}</p>
+    </section>
+  </script>
 
-    <!-- <link rel="stylesheet" href="css/style.css"> -->
-    
-  </head>
-  <body>
-    <header>
-      <h1>The Gallery of Horns</h1>
-      <div id = "selectContainer">
-      <select id = "select">
-        <option id = "option" value="" ></option>
+</head>
+
+<body>
+  <header>
+    <h1>The Gallery of Horns</h1>
+    <div id="selectContainer">
+      <select id="select">
+        <option id="option" value="default">Filter by Keyword</option>
       </select>
     </div>
-    </header>
-    <main>
-      <div id = "container">
+    <div>
+      <button id = "sortByHorns">sort by number of horns</button>
+      <button id = "sortByTitle">sort by title</button>
+      <button id="page1">page1</button>
+      <button id="page2">page2</button>
+      
+    </div>
+  
+
+  </header>
+
+  <main>
+      <!-- <div id = "container">
       <section id="photo-template">
         <h2 class = "title"></h2>
-        <img class = "photo" src="" alt="", width="80px" height="80px">
+        <img class = "photo" src="" alt="", width="150px" height="150px">
         <p class = "description"></p>
       </section>
-    </div>
-    </main>
-    <footer>
-      &copy; 2018 Code Fellows
-    </footer>
-  </body>
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src = "js/app.js"></script>
+    </div> -->
+    </main> 
+  <footer>
+    &copy; 2018 Code Fellows
+  </footer>
+</body>
+
+
+<script src="js/app.js"></script>
+
 </html>
