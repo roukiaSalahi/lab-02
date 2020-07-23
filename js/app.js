@@ -7,6 +7,7 @@ function file1() {
             photo.render();
         });
         createOptions(optionsArr);
+        
     })
 }
 function file2() {
@@ -16,36 +17,44 @@ function file2() {
             photo.render();
         });
         createOptions(optionsArr);
+        
     })
 }
-showS();
+
 file1();
 file2();
+showS();
+
 // adding event to first button and display imgs from first json file 
 $("#page1").click(function () {
+    imageArr.length = 0;
     $('main').empty();
     $.get('data/page-1.json').then(data1 => {
         data1.forEach(element => {
             let photo = new Image(element.image_url, element.title, element.description, element.keyword, element.horns);
             photo.render();
         });
-        $('#photo-template').hide(); //to hide the empty one from html
         createOptions(optionsArr);
     })
     showS();
+    sortImgByHorns();
+    console.log(imageArr);
+    
+
 });
 // adding event to sec button and display imgs from sec json file 
 $("#page2").click(function () {
+    imageArr.length = 0;
     $('main').empty();
     $.get('data/page-2.json').then(data2 => {
         data2.forEach(element => {
-            let photo2 = new Image(element.image_url, element.title, element.description, element.keyword, element.horns);
-            photo2.render();
+            let photo = new Image(element.image_url, element.title, element.description, element.keyword, element.horns);
+            photo.render();
         });
-        $('#photo-template').hide(); //to hide the empty one from html
         createOptions(optionsArr);
     })
     showS();
+    console.log(imageArr);
 });
 
 // constructor
@@ -64,17 +73,20 @@ function Image(image_url, title, description, keyword, horns) {
 }
 // adding event to button and sort the objects by its horns(no)
 console.log(imageArr);
-$("#sortByHorns").click(function () {
-    imageArr.sort(sortByHorns);
-    $('main').empty();
-    imageArr.forEach(element => {
-        element.render();
+
+    $("#sortByHorns").click(function () {
+        imageArr.sort(sortByHorns);
+        $('main').empty();
+        imageArr.forEach(element => {
+            element.render();
+        });
+        console.log(imageArr)
     });
-    console.log(imageArr)
-});
-function sortByHorns(obj1, obj2) {
-    return (obj1.horns - obj2.horns);
-}
+    function sortByHorns(obj1, obj2) {
+        return (obj1.horns - obj2.horns);
+    }
+
+
 
 // adding event to button and sort the objects by its title(string)
 console.log(imageArr);
@@ -114,7 +126,7 @@ function showS() {
     $('select').change(function () {
         let selectedElement = $(this).val();
         $('section').hide();
-        $(`.${selectedElement}`).show();
+        $(`.${selectedElement}`).show(800);
     });
 }
 
